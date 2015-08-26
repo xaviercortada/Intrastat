@@ -1,0 +1,42 @@
+<div class="jumbotron">
+    <h2>Seleccionar periodo</h2>
+</div>
+<div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="year">Año:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-model="periodo.year" id="year" placeholder="seleccionar año">
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="month">Mes:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-model="periodo.month" id="month" placeholder="seleccionar mes">
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="10">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-success" ng-disabled="error || incomplete" ng-click="saveAction()">
+                <span class="glyphicon glyphicon-save"></span> {{buttonCaption}}
+            </button>
+        </div>
+    </form>
+    <hr>
+</div>
+

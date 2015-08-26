@@ -1,0 +1,35 @@
+<div class="jumbotron">
+    <h2>Mantenimiento de categorias</h2>
+</div>
+<div>
+    <button class="btn " ng-click="alta()">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nueva categoria
+    </button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>codigo</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in category.list">
+            <td>{{item.id}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>
+                <button class="btn" ng-click="showEdit(item.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </button>
+            </td>
+            <td>
+                <button class="btn" ng-click="delete(item.id)">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+

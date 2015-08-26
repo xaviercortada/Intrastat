@@ -1,0 +1,37 @@
+<div class="jumbotron">
+    <h2>Mantenimiento de proveedores</h2>
+</div>
+<div>
+    <button class="btn " ng-click="alta()">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nuevo proveedor
+    </button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>codigo</th>
+            <th>nombre</th>
+            <th>poblacion</th>
+            <th>provincia</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in proveedores.list">
+            <td>{{item.id}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.poblacion}}</td>
+            <td>{{item.provincia}}</td>
+            <td>
+                <button class="btn" ng-click="showEdit(item.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </button>
+            </td>
+            <td>
+                <button class="btn" ng-click="deleteProveedor(item.id)">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+

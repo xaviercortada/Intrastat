@@ -1,0 +1,54 @@
+
+body { padding-top: 50px; }
+
+.navbar{
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    width: 100%;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.jumbotron {
+    background: #000 url("../images/images_1.jpg") no-repeat center center;
+    background-size: 100% 100%;
+    overflow: hidden;
+    color: white;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+.my-input.ng-invalid{
+    color : white;
+    background : red;
+}
+
+.periodo-invalid{
+    color: red;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.periodo-valid{
+    color: green;
+    padding-left: 10px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+.my-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}
+.my-pointer-down{ border:solid 5px transparent; border-top:solid 5px #000; }
+.my-pointer-up{border:solid 5px transparent !important; border-bottom:solid 5px #000 !important; margin-top:-8px;}
+.my-select{ border-radius:5px; border:solid 1px #ccc; position:relative; cursor:pointer; height: 35px;}
+.my-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }
+.my-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}
+.my-options{ border:solid 1px #ccc; border-top:none; list-style:none; box-shadow:0px 1px 5px #ddd; display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff; overflow:auto;}
+.my-option{ padding:5px; display:block; border-bottom:solid 1px #ddd; overflow:hidden; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }
+.my-selected-text , .my-option-text{ font-size: 12px; line-height: 0px;padding-bottom: 0px;margin-bottom: 10px;}
+

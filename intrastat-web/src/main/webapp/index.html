@@ -1,0 +1,71 @@
+<html ng-app="helloApp" ng-controller="indexController">
+<head>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/intrastat.css" rel="stylesheet">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-resource.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/bootstrap/js/ui-bootstrap-tpls-0.13.1.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+    <script src="category.js"></script>
+    <script src="item.js"></script>
+    <script src="proveedor.js"></script>
+    <script src="periodo.js"></script>
+    <script src="reports.js"></script>
+    <script src="auth.js"></script>
+</head>
+<body>
+<nav class="navbar  navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">
+                Intrastat
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/">Home</a></li>
+                <li><a ng-click="doAction()" href="#">{{loginCaption}}</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">Proveedores<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/listProveedor">List</a></li>
+                        <li><a href="#/createProveedor">Alta</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">Categorias<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/listCategory">List</a></li>
+                        <li><a href="#/createCategory">Alta</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">Mercancias<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/periodo">Periodo</a></li>
+                        <li><a href="#/listItem">List</a></li>
+                        <li><a href="#/createItem">Alta</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">Reports<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/excel">Excel</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="navbar-text navbar-right">Signed in as {{user.name}}</p>
+            <p class="navbar-text navbar-right" style="padding-left: 10px">
+                <span ng-class="periodo_style">{{perTitle}}</span></p>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div ng-view></div>
+</div>
+</body>
+</html>

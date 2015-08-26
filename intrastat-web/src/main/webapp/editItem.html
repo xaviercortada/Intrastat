@@ -1,0 +1,133 @@
+<script>
+    $.fn.myfunc = function(){
+
+        $(this).find("*").on("click", function () {
+            $(".my-selected-value").val($(this).text());
+            $(".my-selected-text").text($(this).text());
+            $(".my-selected-image").attr("src", $(this).find("img").attr("src"));
+            $("#pais").val($(this).find("input").val());
+            $(".my-option").toggle();
+        });
+    };
+
+    $.fn.mypointer = function() {
+        $(this).on("click", function () {
+            $(".my-option").toggle();
+        });
+    };
+
+</script>
+
+
+
+<div class="jumbotron">
+    <h2>Mantenimiento de mercancias</h2>
+</div>
+<div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="factura">Factura:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="item.factura" id="factura" placeholder="Introducir factura"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pais">Pais:</label>
+            <div class="col-sm-10">
+                 <div class="my-select">
+                    <input class="form-control" type="hidden" value="{{item.pais}}" id="pais">
+
+                    <a class="my-selected">
+                        <img class="my-selected-image" src="images/flags/16/{{item.pais.sigla}}.png" style="margin-top: 0px;">
+                        <label class="my-selected-text" >{{item.pais.name}}</label>
+                    </a>
+                     <span class="my-pointer my-pointer-down"></span>
+                 </div>
+
+                 <ul class="my-options my-click-off-close" style="display: block;">
+                    <li ng-repeat="i in paises" ng-element-ready>
+                        <a class="my-option my-option-selected">
+                            <input class="my-option-value" type="hidden" value={{i}} />
+                            <img class="my-option-image" src="images/flags/16/{{i.sigla}}.png">
+                            <label class="my-option-text" >{{i.name}}</label>
+                        </a>
+                    </li>
+                 </ul>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="entrega">Entrega:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-model="item.entrega" id="entrega" placeholder="Seleccionar entrega">
+                    <option value="EXW">EXW - En Fábrica</option>
+                    <option value="FCA">FCA - Franco transportista</option>
+                    <option value="FAS">FAS - Franco al costado del buque</option>
+                    <option value="FOB">FOB - Franco a Bordo</option>
+                    <option value="CFR">CFR - Coste y flete (C&F)</option>
+                    <option value="CIF">CIF - Coste seguro y flete</option>
+                    <option value="CPT">CPT - Porte pagado hasta punto de destino</option>
+                    <option value="CIP">CIP - Porte pagado + seguro hasta punto de destino incl.</option>
+                    <option value="DAF">DAF - Franco frontera</option>
+                    <option value="DES">DES - Franco (ex ship)</option>
+                    <option value="DEQ">DEQ - Franco sobre muelle</option>
+                    <option value="DDU">DDU - Franco sin despachar en aduana</option>
+                    <option value="DDP">DDP - Franco despacho en aduana</option>
+                    <option value="XXX">XXX - Otras condiciones distintas</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="transporte">Transporte:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-options="p.name for p in transportes track by p.codigo" ng-model="item.transporte" id="transporte" placeholder="seleccionar transporte">
+                    <option value="p">-- Seleccionar transporte --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="category">Categoria:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-options="cat.name for cat in categories track by cat.id" ng-model="item.category" id="category" placeholder="seleccionar categoria">
+                    <option value="cat">-- Seleccionar categoria --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="proveedor">Proveedor:</label>
+            <div class="col-sm-10">
+                <select type="text" class="form-control" ng-options="pr.name for pr in proveedores track by pr.id" ng-model="item.proveedor" id="proveedor">
+                    <option value="pr">Seleccionar proveedor</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="imp">Importe:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control my-input"  ng-pattern="/^\d+(,\d{1,2})?$/" ng-model="item.importe" id="imp" placeholder="Introducir importe" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="peso">Peso:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="item.peso" id="peso" placeholder="Introducir peso"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="unidades">Unidades:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="item.unidades" id="unidades" placeholder="Introducir unidades"/>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-success" ng-disabled="error || incomplete" ng-click="saveAction()">
+                <span class="glyphicon glyphicon-save"></span> {{buttonCaption}}
+            </button>
+        </div>
+    </form>
+    <hr>
+</div>
+

@@ -1,0 +1,41 @@
+<div class="jumbotron">
+    <h2>Mantenimiento de mercancias</h2>
+</div>
+<div>
+    <button class="btn " ng-click="alta()">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nuevo registro
+    </button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>factura</th>
+            <th>categoria</th>
+            <th>proveedor</th>
+            <th>importe</th>
+            <th>peso</th>
+            <th>unidades</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in item.list">
+            <td>{{item.id}}</td>
+            <td>{{item.factura}}</td>
+            <td>{{item.category.name}}</td>
+            <td>{{item.proveedor.name}}</td>
+            <td>{{item.importe}}</td>
+            <td>{{item.peso}}</td>
+            <td>{{item.unidades}}</td>
+            <td>
+                <button class="btn" ng-click="showEdit(item.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </button>
+            </td>
+            <td>
+                <button class="btn" ng-click="delete(item.id)">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
