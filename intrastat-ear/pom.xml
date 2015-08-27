@@ -50,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ear-plugin</artifactId>
-                <version>2.10</version>
+                <version>${version.ear.plugin}</version>
                 <configuration>
                     <!-- Tell Maven we are using Java EE 7 -->
                     <version>7</version>
@@ -82,7 +82,7 @@
             </plugin>
         </plugins>
     </build>
-   
+
     <profiles>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
@@ -94,7 +94,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-ear-plugin</artifactId>
-                        <version>2.10</version>
+                        <version>${version.ear.plugin}</version>
                         <configuration>
                             <outputDirectory>deployments</outputDirectory>
                         </configuration>
@@ -103,5 +103,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

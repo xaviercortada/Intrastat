@@ -51,10 +51,9 @@
 
       <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
       <dependency>
-         <groupId>org.jboss.resteasy</groupId>
-         <artifactId>jaxrs-api</artifactId>
-          <version>3.0.11.Final</version>
-         <scope>provided</scope>
+         <groupId>org.jboss.spec.javax.ws.rs</groupId>
+         <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+          <scope>provided</scope>
       </dependency>
 
       <!-- Import the CDI API, we use provided scope as the API is included in JBoss WildFly -->
@@ -64,18 +63,11 @@
          <scope>provided</scope>
       </dependency>
       
-      <!-- Import the JSF API, we use provided scope as the API is included in JBoss WildFly -->
-      <dependency>
-         <groupId>org.jboss.spec.javax.faces</groupId>
-         <artifactId>jboss-jsf-api_2.2_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
-
       <!-- Import the JPA API, we use provided scope as the API is included in JBoss WildFly -->
       <dependency>
          <groupId>org.hibernate.javax.persistence</groupId>
-         <artifactId>hibernate-jpa-2.1-api</artifactId>
-         <scope>provided</scope>
+         <artifactId>hibernate-jpa-2.0-api</artifactId>
+          <scope>provided</scope>
       </dependency>
 
        <!-- JSR-303 (Bean Validation) Implementation -->
@@ -91,12 +83,6 @@
                    <artifactId>slf4j-api</artifactId>
                </exclusion>
            </exclusions>
-       </dependency>
-       <dependency>
-           <groupId>javax</groupId>
-           <artifactId>javaee-api</artifactId>
-           <version>7.0</version>
-           <scope>provided</scope>
        </dependency>
 
    </dependencies>
