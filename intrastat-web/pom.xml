@@ -56,7 +56,15 @@
          <scope>provided</scope>
       </dependency>
 
-      <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
+     <dependency>
+       <groupId>javax</groupId>
+       <artifactId>javaee-api</artifactId>
+       <version>7.0</version>
+       <scope>provided</scope>
+     </dependency>
+
+
+     <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
       <dependency>
          <groupId>org.jboss.spec.javax.ws.rs</groupId>
          <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
