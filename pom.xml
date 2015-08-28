@@ -8,6 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>intrastat</name>
   
+
     <modules>
         <module>intrastat-ejb</module>
         <module>intrastat-web</module>
