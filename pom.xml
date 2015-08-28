@@ -69,12 +69,6 @@
                 <scope>compile</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>3.12</version>
-            </dependency>
-
             <!-- Import the JPA API, we use provided scope as the API is included in JBoss WildFly -->
             <dependency>
                 <groupId>org.hibernate.javax.persistence</groupId>
