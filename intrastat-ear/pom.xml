@@ -93,8 +93,8 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.war.plugin}</version>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>${version.ear.plugin}</version>
                         <configuration>
                             <outputDirectory>deployments</outputDirectory>
                         </configuration>

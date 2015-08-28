@@ -79,7 +79,7 @@
                 from the Hibernate family of projects) -->
             <dependency>
                 <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-javaee-6.0-with-all</artifactId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
                 <version>1.0.7.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
