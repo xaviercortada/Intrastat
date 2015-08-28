@@ -41,13 +41,6 @@
 
    <dependencies>
 
-     <dependency>
-       <groupId>javax.annotation</groupId>
-       <artifactId>jsr250-api</artifactId>
-       <version>1.0</version>
-     </dependency>
-
-
      <!-- Dependency on the EJB module so we can use it's services if needed -->
       <dependency>
          <groupId>cat.alkaid.solutions</groupId>
@@ -59,7 +52,6 @@
      <dependency>
        <groupId>javax</groupId>
        <artifactId>javaee-api</artifactId>
-       <version>7.0</version>
        <scope>provided</scope>
      </dependency>
 
@@ -71,19 +63,20 @@
           <scope>provided</scope>
       </dependency>
 
-      <!-- Import the CDI API, we use provided scope as the API is included in JBoss WildFly -->
-      <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-      
+
       <!-- Import the JPA API, we use provided scope as the API is included in JBoss WildFly -->
       <dependency>
          <groupId>org.hibernate.javax.persistence</groupId>
          <artifactId>hibernate-jpa-2.0-api</artifactId>
           <scope>provided</scope>
       </dependency>
+
+       <dependency>
+           <groupId>javax.annotation</groupId>
+           <artifactId>jsr250-api</artifactId>
+           <scope>provided</scope>
+       </dependency>
+
 
        <!-- JSR-303 (Bean Validation) Implementation -->
        <!-- Provides portable constraints such as @Email -->
