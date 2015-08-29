@@ -31,7 +31,7 @@
 
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
         <version.jboss.bom>8.2.1.Final</version.jboss.bom>
-        <version.wildfly>9.0.0.Alpha1</version.wildfly>
+        <version.wildfly>8.0.0.Alpha1</version.wildfly>
 
 
         <!-- other plugin versions -->
@@ -42,8 +42,8 @@
         <version.war.plugin>2.5</version.war.plugin>
 
         <!-- maven-compiler-plugin -->
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
     <dependencyManagement>
@@ -110,10 +110,7 @@
                     <version>1.1.0.Alpha2</version>
                     <inherited>true</inherited>
                     <configuration>
-                        <skip>false</skip>
-                        <jbossHome>/opt/wildfly-8.1.0.Final</jbossHome>
-                        <modules-path>/opt/WildFly/modules</modules-path>
-                        <port>9990</port>
+                        <skip>true</skip>
                     </configuration>
                 </plugin>
             </plugins>
