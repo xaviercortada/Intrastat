@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>intrastat</name>
-  
 
     <modules>
         <module>intrastat-ejb</module>
@@ -108,10 +107,13 @@
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.0.2.Final</version>
+                    <version>1.1.0.Alpha2</version>
                     <inherited>true</inherited>
                     <configuration>
-                        <skip>true</skip>
+                        <skip>false</skip>
+                        <jbossHome>/opt/wildfly-8.1.0.Final</jbossHome>
+                        <modules-path>/opt/WildFly/modules</modules-path>
+                        <port>9990</port>
                     </configuration>
                 </plugin>
             </plugins>
