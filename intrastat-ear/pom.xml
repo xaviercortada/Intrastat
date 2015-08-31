@@ -43,7 +43,6 @@
             <type>ejb</type>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -82,7 +81,6 @@
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
