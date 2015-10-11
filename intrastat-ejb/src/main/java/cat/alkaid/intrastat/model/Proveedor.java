@@ -1,9 +1,6 @@
 package cat.alkaid.intrastat.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -37,11 +34,9 @@ public class Proveedor {
 
     private String cpostal;
 
-/*
-    @OneToMany(mappedBy = "proveedor", fetch = FetchType.EAGER, cascade={CascadeType.ALL})
-    private List<Item> items = new ArrayList<Item>();
-*/
-
+    @ManyToOne
+    @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
+    private Company company;
 
     public Proveedor(){
 
@@ -118,5 +113,4 @@ public class Proveedor {
         this.provincia = provincia;
     }
 
-    //public List<Item> getItems(){ return items; }
 }

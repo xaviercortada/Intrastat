@@ -1,8 +1,8 @@
 package cat.alkaid.intrastat.web.rest;
 
 
-import cat.alkaid.intrastat.model.User;
-import cat.alkaid.intrastat.service.UserService;
+import cat.alkaid.intrastat.model.Account;
+import cat.alkaid.intrastat.service.AccountService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -14,17 +14,17 @@ import javax.ws.rs.*;
 // The Java class will be hosted at the URI path "/helloworld"
 // The Java class will be hosted at the URI path "/helloworld"
 @Stateless
-@Path("/user")
+@Path("/account")
 public class UserResource {
 
     @EJB
-    private UserService service;
+    private AccountService service;
 
     @GET
     @Path("/{id}")
     @Produces({"application/xml", "application/json"})
-    public User getUserById(@PathParam("id") String id) {
-        User dto = service.findById(Long.parseLong(id));
+    public Account getUserById(@PathParam("id") String id) {
+        Account dto = service.findByUsername(id);
 
         return dto;
     }
@@ -44,8 +44,8 @@ public class UserResource {
     @GET
     @Path("/finder/{username}")
     @Produces({"application/xml", "application/json"})
-    public User findByUsername(@PathParam("username") String username) {
-        User dto = service.findByUsername(username);
+    public Account findByUsername(@PathParam("username") String username) {
+        Account dto = service.findByUsername(username);
 
         return dto;
     }
@@ -53,7 +53,7 @@ public class UserResource {
     @PUT
     @Path("/")
     @Consumes("application/json")
-    public boolean createUser(User dto) {
+    public boolean createUser(Account dto) {
         System.out.println(dto);
         return service.create(dto);
 
@@ -62,7 +62,7 @@ public class UserResource {
     @POST
     @Path("/")
     @Consumes("application/json")
-    public boolean updateUser(User dto) {
+    public boolean updateUser(Account dto) {
         return service.update(dto);
 
     }
@@ -78,14 +78,9 @@ public class UserResource {
     @POST
     @Path("/password")
     @Consumes("application/json")
-    public boolean changePassword(User dto, String password) {
+    public boolean changePassword(Account dto, String password) {
         return service.changePassword(dto.getId(), password);
     }
 
-    @POST
-    @Path("/periodo")
-    @Consumes("application/json")
-    public boolean changePeriodo(User user) {
-        return service.changePerido(user.getId(), user.getPeriodo());
-    }
+
 }

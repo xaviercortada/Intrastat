@@ -2,7 +2,6 @@ package cat.alkaid.intrastat.auth;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Created by xavier on 26/07/15.
@@ -21,7 +20,7 @@ public class AuthAccessElement implements Serializable {
 
     public AuthAccessElement(String authId){
         this.authId = authId;
-        this.authToken = UUID.randomUUID().toString();
+        //this.authToken = UUID.randomUUID().toString();
         //this.setAuthPermission(authPermission);
     }
 
@@ -48,4 +47,6 @@ public class AuthAccessElement implements Serializable {
     public void setAuthPermission(String authPermission) {
         this.authPermission = authPermission;
     }
+
+
 }

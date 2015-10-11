@@ -3,9 +3,9 @@ package cat.alkaid.intrastat.web.auth;
 
 import cat.alkaid.intrastat.auth.AuthAccessElement;
 import cat.alkaid.intrastat.auth.AuthService;
+import org.jose4j.lang.JoseException;
 
 import javax.annotation.Priority;
-import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Priorities;
@@ -13,17 +13,17 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by xavier on 26/07/15.
  */
 
+
+@Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthSecurityInterceptor implements ContainerRequestFilter {
@@ -42,23 +42,21 @@ public class AuthSecurityInterceptor implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String authId = requestContext.getHeaderString(AuthAccessElement.PARAM_AUTH_ID);
-        String authToken = requestContext.getHeaderString(AuthAccessElement.PARAM_AUTH_TOKEN);
+        //String authToken = requestContext.getHeaderString(AuthAccessElement.PARAM_AUTH_TOKEN);
 
-        System.out.println(requestContext.getHeaders());
+        String authHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
-        Class classInvoked = resourceInfo.getResourceClass();
+        String authToken = authHeader.substring("Bearer".length()).trim();
 
 
-        if (classInvoked.isAnnotationPresent(PermitAll.class)) {
-            //RolesAllowed rolesAllowedAnnotation = methodInvoked.getAnnotation(RolesAllowed.class);
-            Set<String> rolesAllowed = new HashSet<>();//Arrays.asList(rolesAllowedAnnotation.value()));
-            SecurityContext authContext = authService.getSecurityContext(authId, authToken, rolesAllowed);
-            if (authContext == null) {
-                requestContext.abortWith(ACCESS_UNAUTHORIZED);
-            }else{
-                requestContext.setSecurityContext(authContext);
-            }
+        try {
+            authService.isAuthorized(authId, authToken, null);
+        } catch (JoseException e) {
+            e.printStackTrace();
+            requestContext.abortWith(ACCESS_UNAUTHORIZED);
         }
+
+        return;
 
     }
 }

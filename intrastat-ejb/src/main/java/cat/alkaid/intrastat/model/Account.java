@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 /**
  * Created by xavier on 27/07/15.
@@ -11,9 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Access(AccessType.FIELD)
-@XmlRootElement(name = "user")
+@Table(name = "Account")
+@XmlRootElement(name = "account")
 @XmlAccessorType(XmlAccessType.PROPERTY)
-public class User {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,17 +24,21 @@ public class User {
     private String name;
     private String password;
     private String token;
+    private Date activated;
 
     @ManyToOne
     @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
-    private Periodo periodo;
+    private Company company;
+    private String firstName;
+    private String lastName;
+    private String activationCode;
 
-    public User(){
+    public Account(){
 
     }
-    public User(String name, String password){
+    public Account(String name, String password){
         this.name = name;
-        this.password = password;
+        this.setPassword(password);
     }
 
 
@@ -69,7 +75,7 @@ public class User {
     }
 
     public boolean validate(String passwod){
-        return this.password.equals(passwod);
+        return this.getPassword().equals(passwod);
     }
 
     public void putToken(String token){
@@ -77,18 +83,50 @@ public class User {
     }
 
     public void changePassword(String password) {
-        this.password = password;
+        this.setPassword(password);
     }
 
     public boolean isAuthorized(String authToken) {
         return token.equals(authToken);
     }
 
-    public Periodo getPeriodo() {
-        return periodo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPeriodo(Periodo periodo) {
-        this.periodo = periodo;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public Date getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Date activated) {
+        this.activated = activated;
     }
 }

@@ -1,7 +1,7 @@
 package cat.alkaid.intrastat.model;
 
 import cat.alkaid.intrastat.converter.NumberConverter;
-import cat.alkaid.intrastat.listener.ItemListener;
+import cat.alkaid.intrastat.listener.MaterialListener;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,42 +16,25 @@ import java.util.Locale;
  */
 
 @Entity
-@XmlRootElement(name = "item")
+@XmlRootElement(name = "material")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Access(AccessType.FIELD)
 @Converts(value = {@Convert(attributeName = "importe", converter = NumberConverter.class)})
-@EntityListeners(value=ItemListener.class)
-public class Item {
+@EntityListeners(value=MaterialListener.class)
+public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MATERIAL_ID")
     private Long id;
 
     private String codigo;
-
-    private String factura;
 
     private String entrega;
 
     @ManyToOne
     @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
-    private Transporte transporte;
-
-    @ManyToOne
-    @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
-    private Pais pais;
-
-    @ManyToOne
-    @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
-    private Proveedor proveedor;
-
-    @ManyToOne
-    @JoinColumn(name = "", nullable = true, updatable = true, insertable = true)
-    private Periodo periodo;
 
     private Integer peso;
 
@@ -134,14 +117,6 @@ public class Item {
         this.codigo = codigo;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
     public Float getPrice() {
         return price;
     }
@@ -155,24 +130,8 @@ public class Item {
         this.price = price;
         this.importe = "";
 
-        if(this.price != null)
+        if (this.price != null)
             this.importe = decimalFormat.format(this.price);
-    }
-
-    public Periodo getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(Periodo periodo) {
-        this.periodo = periodo;
-    }
-
-    public String getFactura() {
-        return factura;
-    }
-
-    public void setFactura(String factura) {
-        this.factura = factura;
     }
 
     public String getEntrega() {
@@ -183,20 +142,5 @@ public class Item {
         this.entrega = entrega;
     }
 
-    public Transporte getTransporte() {
-        return transporte;
-    }
-
-    public void setTransporte(Transporte transporte) {
-        this.transporte = transporte;
-    }
-
-    public Pais getPais() {
-        return pais;
-    }
-
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
-
 }
+

@@ -21,14 +21,20 @@
 
 
 <div class="jumbotron">
-    <h2>Mantenimiento de mercancias</h2>
+    <h2>Mantenimiento de facturas</h2>
 </div>
-<div>
+<div style="width: 50%">
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="factura">Factura:</label>
+            <label class="control-label col-sm-2" for="codigo">Codigo:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="item.factura" id="factura" placeholder="Introducir factura"/>
+                <input type="text" class="form-control" ng-model="factura.codigo" id="codigo" placeholder="Introducir codigo"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="fecha">Fecha:</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" ng-model="factura.fecha" id="fecha" placeholder="yyyy-MM-dd"/>
             </div>
         </div>
 
@@ -36,11 +42,11 @@
             <label class="control-label col-sm-2" for="pais">Pais:</label>
             <div class="col-sm-10">
                  <div class="my-select">
-                    <input class="form-control" type="hidden" value="{{item.pais}}" id="pais">
+                    <input class="form-control" type="hidden" value="{{factura.pais}}" id="pais">
 
                     <a class="my-selected">
-                        <img class="my-selected-image" src="images/flags/16/{{item.pais.sigla}}.png" style="margin-top: 0px;">
-                        <label class="my-selected-text" >{{item.pais.name}}</label>
+                        <img class="my-selected-image" src="images/flags/16/{{factura.pais.sigla}}.png" style="margin-top: 0px;">
+                        <label class="my-selected-text" >{{factura.pais.name}}</label>
                     </a>
                      <span class="my-pointer my-pointer-down"></span>
                  </div>
@@ -62,7 +68,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="entrega">Entrega:</label>
             <div class="col-sm-10">
-                <select type="text" class="form-control" ng-model="item.entrega" id="entrega" placeholder="Seleccionar entrega">
+                <select type="text" class="form-control" ng-model="factura.entrega" id="entrega" placeholder="Seleccionar entrega">
                     <option value="EXW">EXW - En Fábrica</option>
                     <option value="FCA">FCA - Franco transportista</option>
                     <option value="FAS">FAS - Franco al costado del buque</option>
@@ -83,43 +89,17 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="transporte">Transporte:</label>
             <div class="col-sm-10">
-                <select type="text" class="form-control" ng-options="p.name for p in transportes track by p.codigo" ng-model="item.transporte" id="transporte" placeholder="seleccionar transporte">
+                <select type="text" class="form-control" ng-options="p.name for p in transportes track by p.codigo" ng-model="factura.transporte" id="transporte" placeholder="seleccionar transporte">
                     <option value="p">-- Seleccionar transporte --</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="category">Categoria:</label>
-            <div class="col-sm-10">
-                <select type="text" class="form-control" ng-options="cat.name for cat in categories track by cat.id" ng-model="item.category" id="category" placeholder="seleccionar categoria">
-                    <option value="cat">-- Seleccionar categoria --</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="proveedor">Proveedor:</label>
             <div class="col-sm-10">
-                <select type="text" class="form-control" ng-options="pr.name for pr in proveedores track by pr.id" ng-model="item.proveedor" id="proveedor">
+                <select type="text" class="form-control" ng-options="pr.name for pr in proveedores track by pr.id" ng-model="factura.proveedor" id="proveedor">
                     <option value="pr">Seleccionar proveedor</option>
                 </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="imp">Importe:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control my-input"  ng-pattern="/^\d+(,\d{1,2})?$/" ng-model="item.importe" id="imp" placeholder="Introducir importe" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="peso">Peso:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="item.peso" id="peso" placeholder="Introducir peso"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="unidades">Unidades:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="item.unidades" id="unidades" placeholder="Introducir unidades"/>
             </div>
         </div>
         <div class="col-sm-offset-2 col-sm-10">
@@ -130,4 +110,48 @@
     </form>
     <hr>
 </div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>categoria</th>
+            <th>importe</th>
+            <th>peso</th>
+            <th>unidades</th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <button class="btn " ng-click="addMaterial()">
+                    <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nuevo registro
+                </button>
+            </td>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in factura.materiales">
+            <td>{{item.id}}</td>
+            <td>
+                <div class="col-sm-10">
+                    <select type="text" class="form-control" ng-options="cat.name for cat in categories track by cat.id" ng-model="item.category" id="category" placeholder="seleccionar categoria">
+                        <option value="cat">-- Seleccionar categoria --</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <input type="text" class="form-control"  ng-model="item.importe" ng-pattern="/^\d+(,\d{1,2})?$/" placeholder="Introducir importe"/>
+            <td>
+                <input type="text" class="form-control" ng-model="item.peso" placeholder="Introducir peso"/>
+            </td>
+            <td>
+                <input type="text" class="form-control" ng-model="item.unidades" placeholder="Introducir unidades"/>
+            </td>
 
+            <td>
+                <button class="btn" ng-click="deleteMaterial($index)">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete{{$index}}
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+{{factura.fecha}}

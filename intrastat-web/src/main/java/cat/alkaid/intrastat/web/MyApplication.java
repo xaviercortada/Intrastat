@@ -1,10 +1,13 @@
 package cat.alkaid.intrastat.web;
 
 
+import cat.alkaid.intrastat.service.FacturaService;
+import cat.alkaid.intrastat.service.MaterialService;
 import cat.alkaid.intrastat.service.ReportService;
 import cat.alkaid.intrastat.web.auth.AuthResource;
 import cat.alkaid.intrastat.web.auth.AuthSecurityInterceptor;
 import cat.alkaid.intrastat.web.rest.*;
+import cat.alkaid.intrastat.web.security.service.RegistrationService;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -32,10 +35,14 @@ public class MyApplication extends Application {
         classes.add(cat.alkaid.intrastat.service.CategoryService.class);
         classes.add(cat.alkaid.intrastat.web.rest.Categories.class);
         classes.add(CategoryResource.class);
-        classes.add(cat.alkaid.intrastat.model.Item.class);
-        classes.add(cat.alkaid.intrastat.service.ItemService.class);
-        classes.add(cat.alkaid.intrastat.web.rest.Items.class);
-        classes.add(ItemResource.class);
+        classes.add(cat.alkaid.intrastat.model.Material.class);
+        classes.add(MaterialResource.class);
+        classes.add(MaterialService.class);
+        classes.add(cat.alkaid.intrastat.web.rest.Materiales.class);
+        classes.add(FacturaResource.class);
+        classes.add(FacturaService.class);
+        classes.add(cat.alkaid.intrastat.model.Factura.class);
+        classes.add(cat.alkaid.intrastat.web.rest.Facturas.class);
         classes.add(cat.alkaid.intrastat.model.Periodo.class);
         classes.add(cat.alkaid.intrastat.service.PeriodoService.class);
         classes.add(cat.alkaid.intrastat.web.rest.Periodos.class);
@@ -49,8 +56,6 @@ public class MyApplication extends Application {
         classes.add(cat.alkaid.intrastat.auth.AuthLoginElement.class);
         classes.add(cat.alkaid.intrastat.auth.AuthService.class);
         classes.add(AuthResource.class);
-        classes.add(cat.alkaid.intrastat.model.User.class);
-        classes.add(cat.alkaid.intrastat.service.UserService.class);
         classes.add(UserResource.class);
         classes.add(cat.alkaid.intrastat.web.rest.Users.class);
         classes.add(AuthSecurityInterceptor.class);
@@ -59,6 +64,7 @@ public class MyApplication extends Application {
         classes.add(cat.alkaid.intrastat.model.Transporte.class);
         classes.add(cat.alkaid.intrastat.service.TransporteService.class);
         classes.add(TransporteResource.class);
+        classes.add(RegistrationService.class);
         return classes;
     }
 

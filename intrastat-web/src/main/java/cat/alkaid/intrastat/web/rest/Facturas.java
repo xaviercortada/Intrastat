@@ -1,7 +1,7 @@
 package cat.alkaid.intrastat.web.rest;
 
 
-import cat.alkaid.intrastat.model.Item;
+import cat.alkaid.intrastat.model.Factura;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,22 +15,22 @@ import java.util.List;
  */
 
 @XmlRootElement
-@XmlSeeAlso(Item.class)
-public class Items extends ArrayList<Item> {
+@XmlSeeAlso(Factura.class)
+public class Facturas extends ArrayList<Factura> {
     private static final long serialVersionUID = 3L;
 
-    public Items() {
+    public Facturas() {
         super();
     }
-    public Items(Collection<? extends Item> c) {
+    public Facturas(Collection<? extends Factura> c) {
         super(c);
     }
 
-    @XmlElement(name = "item")
-    public List<Item> getItems() {
+    @XmlElement(name = "factura")
+    public List<Factura> getFacturas() {
         return this;
     }
-    public void setItems(List<Item> data) {
+    public void setFactura(List<Factura> data) {
         this.addAll(data);
     }
 }

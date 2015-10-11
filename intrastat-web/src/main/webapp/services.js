@@ -6,6 +6,17 @@
 
 /* Services */
 
+helloApp.factory('Account', function($resource){
+    return $resource('resources/account/finder/:username',
+        {
+            username: '@username'
+        },
+        {
+            update: { method: 'PUT' }
+        }
+    );
+});
+
 
 helloApp.factory('Proveedor', function($resource){
         return $resource('resources/proveedores/:id', {}, {
@@ -21,8 +32,20 @@ helloApp.factory('Category', function($resource) {
 });
 
 
-helloApp.factory('Item', function($resource) {
-    return $resource('resources/item/:id', {}, {
+helloApp.factory('Factura', function($resource) {
+    return $resource('resources/factura/:id', {}, {
         update: { method: 'PUT' }
     })
+});
+
+
+helloApp.factory('Material', function($resource) {
+    return $resource('resources/material/:idFactura/:idMaterial', {
+            idFactura: '@idFactura',
+            idMaterial: '@idMaterial'
+        },
+        {
+            update: {method: 'PUT'}
+        }
+    );
 });

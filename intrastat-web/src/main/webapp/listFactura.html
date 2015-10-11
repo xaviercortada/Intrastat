@@ -1,0 +1,41 @@
+<div class="jumbotron">
+    <h2>Mantenimiento de facturas</h2>
+</div>
+<div>
+    <button class="btn " ng-click="alta()">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nuevo registro
+    </button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>factura</th>
+            <th>fecha</th>
+            <th>proveedor</th>
+            <th>pais</th>
+            <th>transporte</th>
+            <th>entrega</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="factura in factura.list">
+            <td>{{factura.id}}</td>
+            <td>{{factura.codigo}}</td>
+            <td>{{factura.fecha}}</td>
+            <td>{{factura.proveedor.name}}</td>
+            <td>{{factura.pais.name}}</td>
+            <td>{{factura.transporte.name}}</td>
+            <td>{{factura.entrega}}</td>
+            <td>
+                <button class="btn" ng-click="showEdit(factura.id)">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </button>
+            </td>
+            <td>
+                <button class="btn" ng-click="delete(factura.id)">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+

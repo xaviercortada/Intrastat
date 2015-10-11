@@ -6,15 +6,17 @@ helloApp.factory('PeriodoFactory', function($rootScope, $resource, $modal, $rout
     var resource = $resource('resources/periodo/:id', {id:'@id'});
 
     var perFactory = {
-        periodo : null
-    };
+            };
+
+    var selected = undefined;
 
     perFactory.setPeriodo = function(month, year){
 
         resource.get({month : month, year : year}).$promise.
             then(function(data) {
-                perFactory.periodo = data;
+                selected = data;
                 $rootScope.$broadcast('periodoChanged');
+
 
             }).
             catch(function(response){
@@ -26,7 +28,7 @@ helloApp.factory('PeriodoFactory', function($rootScope, $resource, $modal, $rout
 
 
     perFactory.getPeriodo = function(){
-        if(this.periodo == undefined){
+        if(selected == undefined){
             $modal.open({
                 templateUrl: 'modal.html',
                 controller: 'DialogController',
@@ -41,11 +43,11 @@ helloApp.factory('PeriodoFactory', function($rootScope, $resource, $modal, $rout
             });
             $location.path('/');
         }
-        return this.periodo;
+        return selected;
     };
 
     perFactory.getRawPeriodo = function() {
-        return this.periodo;
+        return selected;
     };
 
     return perFactory;

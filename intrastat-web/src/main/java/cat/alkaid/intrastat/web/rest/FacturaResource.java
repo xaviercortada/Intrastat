@@ -1,10 +1,11 @@
 package cat.alkaid.intrastat.web.rest;
 
 
-import cat.alkaid.intrastat.model.Item;
-import cat.alkaid.intrastat.model.Periodo;
-import cat.alkaid.intrastat.service.ItemService;
+import cat.alkaid.intrastat.auth.AuthAccessElement;
+import cat.alkaid.intrastat.model.Factura;
+import cat.alkaid.intrastat.service.FacturaService;
 import cat.alkaid.intrastat.service.PeriodoService;
+import cat.alkaid.intrastat.web.auth.Secured;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,11 +17,11 @@ import javax.ws.rs.*;
 // The Java class will be hosted at the URI path "/helloworld"
 // The Java class will be hosted at the URI path "/helloworld"
 @Stateless
-@Path("/item")
-public class ItemResource {
+@Path("/factura")
+public class FacturaResource {
 
     @EJB
-    private ItemService service;
+    private FacturaService service;
 
     @EJB
     private PeriodoService perService;
@@ -32,10 +33,11 @@ public class ItemResource {
     //@Produces("text/plain")
     @Path("/{id}")
     @Produces({"application/xml", "application/json"})
-    public Item getItemById(@PathParam("id") String id) {
+    public Factura getItemById(@PathParam("id") String id) {
         // Return some cliched textual content
 
-        Item dto = service.findById(Long.parseLong(id));
+        Factura dto = service.findById(Long.parseLong(id));
+
 
         return dto;
     }
@@ -44,33 +46,37 @@ public class ItemResource {
     @GET
     @Path("/")
     @Produces({"application/xml", "application/json"})
-    public Items findAll(@HeaderParam("per-id") String id_periodo) {
-        Long idPer = Long.parseLong(id_periodo);
+    @Secured
+    public Facturas findAll(@HeaderParam(AuthAccessElement.PARAM_AUTH_ID) String authId) {
+        //Long idPer = Long.parseLong(id_periodo);
 
         System.out.println("all");
 
-        return new Items(service.findByPeriodo(idPer));
+        return new Facturas(service.findAll(authId));
     }
 
     @POST
     @Path("/")
     @Consumes("application/json")
-    public boolean createItem(@HeaderParam("per-id") String id_periodo, Item dto) {
+    @Secured
+    public boolean createFactura(@HeaderParam(AuthAccessElement.PARAM_AUTH_ID) String authId, Factura dto) {
+/*
         Long idPer = Long.parseLong(id_periodo);
-
-        System.out.println(dto);
 
         Periodo periodo = perService.findById(idPer);
         dto.setPeriodo(periodo);
+*/
+        if(authId == null) return false;
 
-        return service.create(dto);
+        return service.create(authId, dto);
 
     }
+
 
     @PUT
     @Path("/")
     @Consumes("application/json")
-    public boolean updateItem(Item dto) {
+    public boolean updateItem(Factura dto) {
         return service.update(dto);
 
     }

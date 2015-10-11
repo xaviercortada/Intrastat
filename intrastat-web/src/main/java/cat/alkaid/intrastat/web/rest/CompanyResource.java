@@ -1,9 +1,8 @@
 package cat.alkaid.intrastat.web.rest;
 
 
-import cat.alkaid.intrastat.model.Category;
-import cat.alkaid.intrastat.service.CategoryService;
-import cat.alkaid.intrastat.web.auth.Secured;
+import cat.alkaid.intrastat.model.Company;
+import cat.alkaid.intrastat.service.CompanyService;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
@@ -16,12 +15,12 @@ import javax.ws.rs.*;
 // The Java class will be hosted at the URI path "/helloworld"
 // The Java class will be hosted at the URI path "/helloworld"
 @Stateless
-@Path("/category")
+@Path("/company")
 @PermitAll()
-public class CategoryResource {
+public class CompanyResource {
 
     @EJB
-    private CategoryService service;
+    private CompanyService service;
 
     // The Java method will process HTTP GET requests
     @GET
@@ -30,50 +29,35 @@ public class CategoryResource {
     //@Produces("text/plain")
     @Path("/{id}")
     @Produces({"application/xml", "application/json"})
-    public Category getCategoryById(@PathParam("id") String id) {
+    public Company getCompanyById(@PathParam("id") String id) {
         // Return some cliched textual content
 
-        Category dto = service.findById(Long.parseLong(id));
+        Company dto = service.findById(Long.parseLong(id));
 
         return dto;
     }
 
 
-    @GET
-    @Secured
-    @Path("/")
-    @Produces({"application/xml", "application/json"})
-    public Categories findAll() {
-        // Return some cliched textual content
-
-        System.out.println("all");
-
-        return new Categories(service.findAll());
-    }
-
     @POST
     @Path("/")
     @Consumes("application/json")
-    public boolean createCategory(Category dto) {
+    public boolean createCompany(Company dto) {
         System.out.println(dto);
         return service.create(dto);
-
     }
 
     @PUT
     @Path("/")
     @Consumes("application/json")
-    public boolean updateCategory(Category dto) {
+    public boolean updateCompany(Company dto) {
         return service.update(dto);
-
     }
 
     @DELETE
     @Path("/{id}")
     @Consumes("application/json")
-    public boolean deleteCategory(@PathParam("id") String id) {
+    public boolean deleteCompany(@PathParam("id") String id) {
         return service.delete(Long.parseLong(id));
-
     }
 
 }

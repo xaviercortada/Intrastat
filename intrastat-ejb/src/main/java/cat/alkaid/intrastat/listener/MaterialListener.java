@@ -1,6 +1,6 @@
 package cat.alkaid.intrastat.listener;
 
-import cat.alkaid.intrastat.model.Item;
+import cat.alkaid.intrastat.model.Material;
 import cat.alkaid.intrastat.utils.FormatterBean;
 
 import javax.persistence.PostLoad;
@@ -11,7 +11,7 @@ import java.text.ParseException;
  * Created by xavier on 4/08/15.
  */
 
-public class ItemListener {
+public class MaterialListener {
     private final String pattern = "#,###.00";
 
     @PostLoad
@@ -19,11 +19,11 @@ public class ItemListener {
 
         DecimalFormat decimalFormat = FormatterBean.getInstance().getDecimalFormat();
         decimalFormat.applyPattern(pattern);
-        if(object instanceof Item){
-            Item item = (Item)object;
+        if(object instanceof Material){
+            Material material = (Material)object;
             try {
-                Number number = decimalFormat.parse(item.getImporte());
-                item.setPrice(number.floatValue());
+                Number number = decimalFormat.parse(material.getImporte());
+                material.setPrice(number.floatValue());
             } catch (ParseException e) {
                 e.printStackTrace();
             }

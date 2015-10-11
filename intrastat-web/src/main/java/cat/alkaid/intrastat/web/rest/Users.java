@@ -1,6 +1,6 @@
 package cat.alkaid.intrastat.web.rest;
 
-import cat.alkaid.intrastat.model.User;
+import cat.alkaid.intrastat.model.Account;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,22 +14,22 @@ import java.util.List;
  */
 
 @XmlRootElement
-@XmlSeeAlso(User.class)
-public class Users extends ArrayList<User> {
+@XmlSeeAlso(Account.class)
+public class Users extends ArrayList<Account> {
     private static final long serialVersionUID = 2L;
 
     public Users() {
         super();
     }
-    public Users(Collection<? extends User> c) {
+    public Users(Collection<? extends Account> c) {
         super(c);
     }
 
     @XmlElement(name = "user")
-    public List<User> getUsers() {
+    public List<Account> getUsers() {
         return this;
     }
-    public void setUsers(List<User> data) {
+    public void setUsers(List<Account> data) {
         this.addAll(data);
     }
 }
